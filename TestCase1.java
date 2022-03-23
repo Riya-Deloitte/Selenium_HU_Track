@@ -1,12 +1,8 @@
 package sampleApp;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import java.util.List;
-import java.util.ArrayList;
 
-import java.util.ArrayList;
 
 public class TestCase1 {
     public static void main(String[] args) {
@@ -35,10 +31,10 @@ public class TestCase1 {
     }
 
     public static void Login(ChromeDriver driver) {
-        String currentHandle = driver.getWindowHandle();
-        driver.findElement(By.xpath("//a[contains(text(),'Login')]")).click();
-        driver.findElement(By.linkText("Login")).click();
-        driver.switchTo().window(currentHandle);
+        driver.findElement(By.cssSelector("Body")).sendKeys(Keys.CONTROL +"t");
+        driver.get("https://www.phptravels.net/login");
+        System.out.println("Page title is : " + driver.getTitle());
+        driver.findElement(By.cssSelector("Body")).sendKeys(Keys.CONTROL +"\t");
         System.out.println("Page title is : " + driver.getTitle());
         if (driver.getPageSource().contains("PHPTRAVELS")) {
             System.out.println("PASS");
@@ -55,6 +51,8 @@ public class TestCase1 {
     }
 
     public static void BackAndRefresh(ChromeDriver driver) {
+        /*driver.findElement(By.cssSelector("Body")).sendKeys(Keys.CONTROL +"t");
+        driver.get("https://www.phptravels.net/login");*/
         driver.navigate().back();
         driver.navigate().refresh();
         driver.close();
